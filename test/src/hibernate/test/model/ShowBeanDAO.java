@@ -27,7 +27,8 @@ public class ShowBeanDAO {
 	}
 	
 	//查詢多筆
-	public List<ShowBean> selectAll() {//"From ShowBean"為createQuery
+	public List<ShowBean> selectAll() { 
+		//"From ShowBean"為createQuery
 		Query<ShowBean> query = session.createQuery("From ShowBean", ShowBean.class);
 		List<ShowBean> list = query.list();
 		return list;
@@ -53,5 +54,20 @@ public class ShowBeanDAO {
 		
 		return false;
 	}
+	
+	//模糊查詢
+	//find內預設傳入String searchString參數
+	public List<ShowBean> find(String searchString) { 
+            String queryString = "from ShowBean where ACT_TITLE like'%"+searchString+"%'"; 
+            Query queryObject = session.createQuery(queryString); 
+
+            return queryObject.list(); 
+
+             
+
+        
+
+    }
+	
 
 }

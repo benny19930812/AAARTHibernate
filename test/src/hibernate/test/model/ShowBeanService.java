@@ -5,34 +5,38 @@ import java.util.List;
 import org.hibernate.Session;
 
 public class ShowBeanService implements IShowBeanService {
-	private ShowBeanDAO hDao;
+	private ShowBeanDAO SDao;
 	public ShowBeanService(Session session) {
-		hDao = new ShowBeanDAO(session);
+		SDao = new ShowBeanDAO(session);
 	}
 
 	@Override
 	public ShowBean insert(ShowBean bean) {		
-		return hDao.insert(bean);
+		return SDao.insert(bean);
 	}
 
 	@Override
 	public ShowBean select(int actId) {		
-		return hDao.select(actId);
+		return SDao.select(actId);
 	}
 
 	@Override
 	public List<ShowBean> selectAll() {	
-		return hDao.selectAll();
+		return SDao.selectAll();
 	}
 
 	@Override
 	public ShowBean update(int actid, String acttitle) {	
-		return hDao.update(actid, acttitle);
+		return SDao.update(actid, acttitle);
 	}
 
 	@Override
 	public boolean delete(int actid) {	
-		return hDao.delete(actid);
+		return SDao.delete(actid);
+	}
+	@Override
+	public List<ShowBean> find(String searchString){
+		return SDao.find(searchString);
 	}
 
 }

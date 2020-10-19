@@ -8,4 +8,5 @@ public interface IShowBeanService {
 	public List<ShowBean> selectAll();
 	public ShowBean update(int actid, String acttitle);
 	public boolean delete(int actid) ;
+	public  List<ShowBean> find(String searchString);
 }
