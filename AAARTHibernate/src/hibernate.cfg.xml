@@ -22,7 +22,7 @@
 		
 		
 		 <!-- 用annotation@用mapping class= 用 hbm.xml用mapping resource -->
-		<mapping class="_04_AAART.hibernate.model.ShowBean" />
+		<mapping class="_04_AAARThibernate.model.ShowBean" />
 		
 	</session-factory>
 </hibernate-configuration>
