@@ -29,7 +29,8 @@ import org.hibernate.Hibernate;
 
 import hibernateweb.util.HibernateUtil;
 
-@WebServlet("/_04_AAARThibernate/action/AAArtAction2")
+//@WebServlet("/_04_AAARThibernate/action/AAArtAction2")
+@WebServlet("/AAArtAction2")
 public class AAArtAction2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -39,8 +40,7 @@ public class AAArtAction2 extends HttpServlet {
 		List<Map> list = new ArrayList<Map>();
 
 		SessionFactory factory = HibernateUtil.getSessionFactory();
-
-		Session session = factory.getCurrentSession();
+		Session session = factory.getCurrentSession();	
 		session.beginTransaction();
 		
 		
@@ -55,7 +55,7 @@ public class AAArtAction2 extends HttpServlet {
 			String titleString = showBean.getACT_TITLE();
 			String siteString = showBean.getACT_LOCATION_NAME();
 			
-			if ("6".equals(category)) {
+			if (queryCate.equals(category)) {
 //			if (queryCate.equals(category)) {
 //				System.out.println(noint);
 //				System.out.println(titleString);
@@ -87,11 +87,11 @@ public class AAArtAction2 extends HttpServlet {
 				}
 				//搜尋後總活動數
 				int totalnum = list.size();
-				System.out.println("共"+totalnum+"筆資料");
+//				System.out.println("共"+totalnum+"筆資料");
 				//每頁顯示活動數
 				int PerPage = 100;
 				//總頁數
-				int totalPages = totalnum % PerPage == 0 ? totalnum / PerPage : totalnum / PerPage ;
+				int totalPages = totalnum % PerPage == 0 ? totalnum / PerPage : totalnum / PerPage +1 ;
 				//本頁起始使用者序號
 				int beginIndex = (page - 1) * PerPage;
 				//本頁末尾使用者序號的下一個
@@ -104,6 +104,7 @@ public class AAArtAction2 extends HttpServlet {
 				request.setAttribute("beginIndex", beginIndex);
 				request.setAttribute("endIndex", endIndex);
 				request.setAttribute("page", page);
+				request.setAttribute("category", queryCate);
 
 //				response.sendRedirect("/04_AAART.hibernate/AAA.jsp");
 

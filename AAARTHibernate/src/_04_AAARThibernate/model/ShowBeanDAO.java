@@ -12,12 +12,12 @@ public class ShowBeanDAO {
 		this.session =session;
 	}
 	//新增
-	public ShowBean insert(ShowBean bean) {
-		ShowBean resultBean = session.get(ShowBean.class,bean.getACT_NO());
+	public ShowBean insert(ShowBean showbean) {
+		ShowBean resultBean = session.get(ShowBean.class,showbean.getACT_NO());
 		
 		if (resultBean==null) {
-			session.save(bean);
-			return bean;
+			session.save(showbean);
+			return showbean;
 		}
 		return null;
 	}

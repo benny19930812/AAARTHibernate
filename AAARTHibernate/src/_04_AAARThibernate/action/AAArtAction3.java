@@ -29,44 +29,35 @@ import org.hibernate.Hibernate;
 
 import hibernateweb.util.HibernateUtil;
 
-@WebServlet("/AAArtAction")
-//@WebServlet("/_04_AAARThibernate/action/AAArtAction")
-public class AAArtAction extends HttpServlet {
+//@WebServlet("/_04_AAARThibernate/action/AAArtAction2")
+@WebServlet("/AAArtAction3")
+public class AAArtAction3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		processAction(request, response);
-//	}
-//
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-//			throws ServletException, IOException {
-//		processAction(request, response);
-//	}
-//
-//	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+
 		List<Map> list = new ArrayList<Map>();
 
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-
-		// 用DAO物件帶入方法
-//		ShowBeanDAO sDao = new ShowBeanDAO(session);
-//		List<ShowBean> showList = sDao.selectAll();
-		// 建service物件，用service帶入方法
+		
+		
+		String queryCate = request.getParameter("category");
+		
 		ShowBeanService showService = new ShowBeanService(session);
 		List<ShowBean> showList = showService.selectAll();
 		for (ShowBean showBean : showList) {
 			String category = Integer.toString(showBean.getACT_CATEGORY());
-//			int category = showBean.getACT_CATEGORY();
+
 			int noint = showBean.getACT_NO();
 			String titleString = showBean.getACT_TITLE();
 			String siteString = showBean.getACT_LOCATION_NAME();
-//			String description = showBean.getACT_DESCRIPTION();
-			String queryCate = "5";
-			if (queryCate.equals(category)) {
+			
+			if ("6".equals(category)) {
+//			if (queryCate.equals(category)) {
 //				System.out.println(noint);
 //				System.out.println(titleString);
 //				System.out.println(siteString);
@@ -97,7 +88,7 @@ public class AAArtAction extends HttpServlet {
 				}
 				//搜尋後總活動數
 				int totalnum = list.size();
-				System.out.println("共"+totalnum+"筆資料");
+//				System.out.println("共"+totalnum+"筆資料");
 				//每頁顯示活動數
 				int PerPage = 100;
 				//總頁數
@@ -133,7 +124,6 @@ public class AAArtAction extends HttpServlet {
 			System.out.println(map_1);
 		}
 		
-//		RequestDispatcher dispatcher = request.getRequestDispatcher("_04_AAARThibernate/index.jsp");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("_04_AAARThibernate/index.jsp");
 		dispatcher.forward(request, response);
 //		request.getRequestDispatcher("/04_AAART.hibernate/AAA.jsp").forward(request, response);

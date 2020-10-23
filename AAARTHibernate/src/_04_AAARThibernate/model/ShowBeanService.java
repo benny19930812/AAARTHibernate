@@ -11,8 +11,8 @@ public class ShowBeanService implements IShowBeanService {
 	}
 
 	@Override
-	public ShowBean insert(ShowBean bean) {		
-		return SDao.insert(bean);
+	public ShowBean insert(ShowBean showbean) {		
+		return SDao.insert(showbean);
 	}
 
 	@Override
