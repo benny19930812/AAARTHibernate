@@ -2,22 +2,32 @@ package _04_AAARThibernate.model;
 
 
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 
 
 @Entity  //宣告此class為javabean
 @Table(name = "MAINTABLE")
-public class ShowBean {
+public class ShowBean implements Serializable{
 	
 
+
+	
+//	@Id
+//	@SequenceGenerator(name="MAINTABLE_SEQUENCE",sequenceName="MAINTABLE_SEQUENCE",allocationSize=1,initialValue=4779)
+//	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="MAINTABLE_SEQUENCE")
+//	@Column(name = "ACT_NO", updatable = false, nullable = false)
+	
 	@Id //設定primary key
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //primary key的產生方式 有auto、IDENTITY	
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //primary key的產生方式 有auto、IDENTITY	 
 	@Column(name = "ACT_NO")
 	private int ACT_NO;
 	

@@ -29,7 +29,8 @@ public class ShowBeanDAO {
 	//查詢多筆
 	public List<ShowBean> selectAll() { 
 		//"From ShowBean"為createQuery
-		Query<ShowBean> query = session.createQuery("From ShowBean", ShowBean.class);
+		//
+		Query<ShowBean> query = session.createQuery("From ShowBean SB ORDER BY SB.ACT_NO", ShowBean.class);
 		List<ShowBean> list = query.list();
 		return list;
 	}

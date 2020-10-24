@@ -34,7 +34,7 @@
 </style>
 </head>
 <body>
-<%-- 	<jsp:include page="/fragment/top.jsp" /> --%>
+	<jsp:include page="/_04_AAARThibernate/topbar.jsp" />
 <div class="container">
 <!-- 頂部按鈕	 -->
 <form method=GET action="<c:url value='/AAArtAction2'/>"> 
@@ -69,7 +69,9 @@
 <%-- <button type="button" class="btn btn-info" value="button" onclick="location.href='<c:url value='/AAArtAction3'/>'">回上一頁</button> --%>
 	
 	<h1>後臺管理系統</h1>
+	
 <button type="button" class="btn btn-info" value="button" onclick="location.href='<c:url value='InsertAction.jsp'/>'">新增活動</button>
+	
 	<c:set var="totalnum" value="${requestScope.totalnum}" />
 	<c:set var="PerPage" value="${requestScope.PerPage}" />
 	<c:set var="totalPages" value="${requestScope.totalPages}" />
@@ -88,6 +90,7 @@
 總頁數:${totalPages}
 第幾頁:${page}</p>
 
+<form name="order" action="<c:url value='/Delete'/>" method="get">
 	<table  class="table table-bordered">
 		<tr>
 			<th class="no">編號</th>
@@ -101,17 +104,19 @@
 		<c:forEach items="${currentPage}" var="show" varStatus="idx">
 			<tr>
 				<!-- 傳送訂單資訊 -->
-				<form name="order" action="./04_Booking.jsp" method="get">
 					<td>${show.no}</td>
 					<td>${show.title}</td>
 					<td>${show.site}</td>
 <%-- 					<td>${show.date}</td> --%>
-					<td><input type=SUBMIT value="修改" class="btn btn-outline-info"></td>
-					<td><input type=SUBMIT value="刪除" class="btn btn-outline-info"></td>
+
+<!-- 					<td><input type=SUBMIT value="修改" class="btn btn-outline-info" ></td> -->
+<!-- 					<td><input type=SUBMIT value="刪除" class="btn btn-outline-info"></td> -->
+					<td> <button name="actno" type="submit" value=${show.no} class="btn btn-info">${show.no}修改</button></td>
+					<td> <button name="actno" type="submit" value=${show.no} class="btn btn-info">${show.no}刪除</button></td>
 					<!-- 這些隱藏欄位都會送到後端 -->
-					<Input type='hidden' name='title' value='${show.title}'> <Input
-						type='hidden' name='actid' value='${show.no}'> <Input
-						type='hidden' name='description' value='${show.description}'>
+<%-- 					<Input type='hidden' name='title' value='${show.title}'>  --%>
+<%-- 					<Input type='hidden' name='actno' value='${show.no}'>  --%>
+<%-- 					<Input type='hidden' name='description' value='${show.description}'> --%>
 
 				</form>
 			</tr>

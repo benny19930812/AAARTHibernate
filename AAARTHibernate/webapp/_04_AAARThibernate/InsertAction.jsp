@@ -15,10 +15,10 @@
 		<div class="container">
 			<p></p>
 			<table class="table table-bordered">
-				<tr>
-					<td>NO</td>
-					<td><input type="text" name="no" ></td>
-				</tr>
+<!-- 				<tr> -->
+<!-- 					<td>NO</td> -->
+<!-- 					<td><input type="text" name="no" ></td> -->
+<!-- 				</tr> -->
 				<tr>
 					<td>標題</td>
 					<td><input type="text" name="title" ></td>
