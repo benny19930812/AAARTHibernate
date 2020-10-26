@@ -31,8 +31,11 @@ public class ShowBeanService implements IShowBeanService {
 	}
 
 	@Override
-	public ShowBean update(int actid, String acttitle) {	
-		return SDao.update(actid, acttitle);
+	public ShowBean update(int actno, String title, int category, String location, String locationName,
+			String mainunit, String showunit, String description, String startdate, String enddate) {	
+		
+		return SDao.update(actno,title,category,location,locationName,
+				mainunit,showunit,description,startdate,enddate);
 	}
 
 	@Override

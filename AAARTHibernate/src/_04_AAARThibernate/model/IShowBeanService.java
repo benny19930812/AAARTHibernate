@@ -7,7 +7,8 @@ public interface IShowBeanService {
 	public ShowBean select(int actId);
 	public List<ShowBean> selectAll();
 	public List<ShowBean> selectAll2();
-	public ShowBean update(int actid, String acttitle);
+	public ShowBean update(int actno, String title, int category, String location, String locationName,
+			String mainunit, String showunit, String description, String startdate, String enddate);
 	public boolean delete(int actid) ;
 	public  List<ShowBean> find(String searchString);
 }

@@ -9,9 +9,9 @@
 </head>
 <body>
 	<jsp:include page="/_04_AAARThibernate/topbar.jsp" />
-	<h1>活動新增</h1>
+	<h1>活動修改</h1>
 	<form method=GET
-		action="<c:url value='/Insert'/>">
+		action="<c:url value='/Update2'/>">
 
 		<div class="container">
 			<p></p>
@@ -20,9 +20,10 @@
 <!-- 					<td>NO</td> -->
 <!-- 					<td><input type="text" name="no" ></td> -->
 <!-- 				</tr> -->
+					<input type="hidden" name="actno" value="${requestScope.actno}">
 				<tr>
 					<td>標題</td>
-					<td><input type="text" name="title" ></td>
+					<td><input type="text" name="title" value="${requestScope.title}"></td>
 				</tr>
 				<tr>
 					<td>分類</td>
@@ -75,7 +76,7 @@
 				</tr>
 				<tr>
 					<td>地點</td>
-					<td><input type="text" name="locationName"></td>
+					<td><input type="text" name="locationName" value="${requestScope.locationName}"></td>
 				</tr>
 <!-- 				<tr> -->
 <!-- 					<td>活動開始日</td> -->
@@ -83,28 +84,28 @@
 <!-- 				</tr> -->
 				<tr>
 					<td>主辦單位</td>
-					<td><input type="text" name="mainunit"></td>
+					<td><input type="text" name="mainunit" value="${requestScope.mainunit}"></td>
 				</tr>
 				<tr>
 					<td>演出單位</td>
-					<td><input type="text" name="showunit"></td>
+					<td><input type="text" name="showunit" value="${requestScope.showunit}"></td>
 				</tr>
 				<tr>
 					<td>活動開始日</td>
-					<td><input type="date" name="startdate"></td>
+					<td><input type="date" name="startdate" value="${requestScope.startdate}"></td>
 				</tr>
 				<tr>
 					<td>活動結束日</td>
-					<td><input type="date" name="enddate"></td>
+					<td><input type="date" name="enddate" value="${requestScope.enddate}"></td>
 				</tr>
 				<tr>
 					<td>活動描述</td>
-					<td><textarea rows="8" cols="" name="description"></textarea>
+					<td><textarea rows="8" cols="" name="description" >${requestScope.description}</textarea>
 					</td>
 				</tr>
 			</table>
 
-			<input type="submit" value="送出新增" name="1"
+			<input type="submit" value="送出修改" name="1"
 				class="btn btn-outline-info" id="1">
 	</form>
 	</div>

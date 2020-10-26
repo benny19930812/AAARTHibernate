@@ -1,6 +1,8 @@
 package _04_AAARThibernate.action;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,12 +19,12 @@ import _04_AAARThibernate.model.ShowBeanService;
 import hibernateweb.util.HibernateUtil;
 
 /**
- * Servlet implementation class Insert
+ * Servlet implementation class UpdateOrDelete
  */
-@WebServlet("/Insert")
-public class Insert extends HttpServlet {
+@WebServlet("/Update2")
+public class Update2 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		processAction(request, response);
@@ -35,19 +37,23 @@ public class Insert extends HttpServlet {
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {	
 
+	
+//		String page = request.getParameter("page");
+//		System.out.println(page);
+		
 
-//		System.out.println(no);
+		String page = request.getParameter("page");
+		
+		int actno =Integer.parseInt(request.getParameter("actno"));
 		String title = request.getParameter("title");
 		int category =Integer.parseInt(request.getParameter("category"));
 		String location = request.getParameter("location");
-//		System.out.println(location);
 		String locationName = request.getParameter("locationName");
 		String mainunit = request.getParameter("mainunit");
 		String showunit = request.getParameter("showunit");
 		String description = request.getParameter("description");
 		String startdate = request.getParameter("startdate");
 		String enddate = request.getParameter("enddate");
-		
 
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
@@ -55,17 +61,21 @@ public class Insert extends HttpServlet {
 			session.beginTransaction();
 			
 			ShowBeanService showService = new ShowBeanService(session);
-			ShowBean showBean = new ShowBean();
-			showBean.setACT_TITLE(title);
-			showBean.setACT_CATEGORY(category);
-			showBean.setACT_LOCATION(locationName);
-			showBean.setACT_MAINUNIT(mainunit);
-			showBean.setACT_SHOWUNIT(showunit);
-			showBean.setACT_DESCRIPTION(description);
-			showBean.setACT_STARTDATE(startdate);
-			showBean.setACT_ENDDATE(enddate);
+			ShowBean showBean =new ShowBean(); 
+
+			showService.update(actno, title, category, location, locationName, mainunit, showunit, description, startdate, enddate);
+		
 			
-			showService.insert(showBean);
+			request.setAttribute("title",title);
+			request.setAttribute("category",category );
+			request.setAttribute(" location", location );
+			request.setAttribute("locationName",locationName );
+			request.setAttribute("mainunit",mainunit );
+			request.setAttribute("showunit",showunit );
+			request.setAttribute("description",description );
+			request.setAttribute("enddate",enddate );
+			
+			
 			
 			session.getTransaction().commit();
 			
@@ -74,11 +84,18 @@ public class Insert extends HttpServlet {
 		}finally {
 			session.close();	
 		}
+//		response.sendRedirect("_04_AAARThibernate/index.jsp");
+//		response.sendRedirect("/AAArtAction2?page="+page+"&category="+category);
 
-
-		response.sendRedirect("index.jsp");
-
-
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		
+		response.sendRedirect("/HibernateWebProject/AAArtAction?page="+page+"&category="+category);
+//		RequestDispatcher dispatcher = request.getRequestDispatcher("/_04_AAARThibernate/UpdateAction.jsp");
+//		dispatcher.forward(request, response);
+		
+//		HibernateUtil.closeSessionFactory();		
+	
+	
+	
 	}
 }
-	
