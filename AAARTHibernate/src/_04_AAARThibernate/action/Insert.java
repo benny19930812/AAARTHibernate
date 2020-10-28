@@ -1,6 +1,7 @@
 package _04_AAARThibernate.action;
 
 import java.io.IOException;
+import java.sql.Blob;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,7 +41,6 @@ public class Insert extends HttpServlet {
 		String title = request.getParameter("title");
 		int category =Integer.parseInt(request.getParameter("category"));
 		String location = request.getParameter("location");
-//		System.out.println(location);
 		String locationName = request.getParameter("locationName");
 		String mainunit = request.getParameter("mainunit");
 		String showunit = request.getParameter("showunit");
@@ -58,7 +58,8 @@ public class Insert extends HttpServlet {
 			ShowBean showBean = new ShowBean();
 			showBean.setACT_TITLE(title);
 			showBean.setACT_CATEGORY(category);
-			showBean.setACT_LOCATION(locationName);
+			showBean.setACT_LOCATION(location);
+			showBean.setACT_LOCATION_NAME(locationName);
 			showBean.setACT_MAINUNIT(mainunit);
 			showBean.setACT_SHOWUNIT(showunit);
 			showBean.setACT_DESCRIPTION(description);

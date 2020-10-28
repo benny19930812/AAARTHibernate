@@ -1,8 +1,18 @@
 package _04_AAARThibernate.model;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.util.List;
+
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+
+
 
 public class ShowBeanDAO {
 
@@ -11,6 +21,21 @@ public class ShowBeanDAO {
 	public ShowBeanDAO(Session session) {
 		this.session = session;
 	}
+//	//圖片新增(Blob)
+//	public ShowBean Photoinsert(ShowBean showbean) throws IOException {
+//		ShowBean picBean = session.get(ShowBean.class, showbean.getACT_NO());
+//		File f = new File("assets/app.png");
+//        //获得文件输入流
+//        InputStream input = new FileInputStream(f);
+//        //创建一个Blob对象
+//        Blob image = (Blob) Hibernate.getLobCreator(session).createBlob(input, input.available());
+//        //设置照片属性
+//        picBean.setACT_PHOTO(image);
+//        input.close();
+//        session.save(picBean);
+//		return picBean;
+//    }
+
 
 	// 新增
 	public ShowBean insert(ShowBean showbean) {

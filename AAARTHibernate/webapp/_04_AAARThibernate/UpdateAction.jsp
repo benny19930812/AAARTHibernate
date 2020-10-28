@@ -21,14 +21,20 @@
 <!-- 					<td><input type="text" name="no" ></td> -->
 <!-- 				</tr> -->
 					<input type="hidden" name="actno" value="${requestScope.actno}">
+					<input type="hidden" name="page" value="${requestScope.page}">
 				<tr>
+				
+					<td>編號</td>
+					<td>${requestScope.actno}</td>
+				</tr>
+				<tr>			
 					<td>標題</td>
 					<td><input type="text" name="title" value="${requestScope.title}"></td>
 				</tr>
 				<tr>
 					<td>分類</td>
 					<td><select id="category" class="" name="category">
-							<option value="" selected>選擇分類</option>
+							<option value="${requestScope.category}" selected>選擇分類</option>
 							<option value="1">音樂</option>
 							<option value="2">戲劇</option>
 							<option value="3">舞蹈</option>
@@ -48,8 +54,8 @@
 				</tr>
 				<tr>
 					<td>縣市名</td>
-					<td><select id="site" class="" name="location">
-							<option value="" selected>選擇地區</option>
+					<td><select id="site" class="" name="location" value="${requestScope.location}">
+							<option value="${requestScope.location}" selected>選擇縣市</option>
 							<option value="">==北部地區==</option>
 							<option value="基隆">基隆</option>
 							<option value="台北">台北</option>
@@ -105,9 +111,23 @@
 				</tr>
 			</table>
 
-			<input type="submit" value="送出修改" name="1"
-				class="btn btn-outline-info" id="1">
+			<input type="submit" value="送出修改" name=""
+				class="btn btn-outline-info" id="" onclick="return update()">
 	</form>
 	</div>
+	
+	
+		<script>
+		function insert() {
+			var msg = "確認是否更新?";
+			if (confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+
+	</script>
 </body>
 </html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+        <property name="hibernate.connection.username">group4</property>
+        <property name="hibernate.connection.password">oracle</property>
+<!--         <property name="hibernate.connection.password">hr</property> -->
+<!--         <property name="hibernate.connection.username">hr</property> -->
+        <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/XEPDB1</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+        
+        <property name="hibernate.current_session_context_class">thread</property>
+<!--         秀出sql語法 -->
+        <property name="hibernate.show_sql">true</property>
+<!--         sql語法自動排版 -->
+        <property name="hibernate.format_sql">true</property>
+        
+        <mapping resource="tw/binbin/hibernateproject/model/HouseBean.hbm.xml"/>
+        <mapping class="tw.binbin.hibernateproject.model.Department"/>
+<!--         <mapping resource="hibernate/test/model/ShowBean.hbm.xml"/> -->
+        
+<!--         用annotation@用mapping class= 用 hbm.xml用mapping resource -->
+        <mapping class="hibernate.test.model.ShowBean"/>
+        <mapping class="tw.binbin.hibernateproject.model.Books"/>
+        <mapping class="tw.binbin.hibernateproject.model.BooksDetail"/>
+        
+        <mapping class="tw.binbin.hibernateproject.model.Stock"/>
+        <mapping class="tw.binbin.hibernateproject.model.StockTransaction"/>
+        <mapping class="tw.binbin.hibernateproject.model.Profiles"/>
+    </session-factory>
+</hibernate-configuration>

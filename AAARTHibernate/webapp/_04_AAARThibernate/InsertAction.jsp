@@ -10,24 +10,23 @@
 <body>
 	<jsp:include page="/_04_AAARThibernate/topbar.jsp" />
 	<h1>活動新增</h1>
-	<form method=GET
-		action="<c:url value='/Insert'/>">
+	<form method=GET action="<c:url value='/Insert'/>">
 
 		<div class="container">
 			<p></p>
 			<table class="table table-bordered">
-<!-- 				<tr> -->
-<!-- 					<td>NO</td> -->
-<!-- 					<td><input type="text" name="no" ></td> -->
-<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td>NO</td> -->
+				<!-- 					<td><input type="text" name="no" ></td> -->
+				<!-- 				</tr> -->
 				<tr>
 					<td>標題</td>
-					<td><input type="text" name="title" ></td>
+					<td><input type="text" name="title" required="required"></td>
 				</tr>
 				<tr>
 					<td>分類</td>
 					<td><select id="category" class="" name="category">
-							<option value="" selected>選擇分類</option>
+							<option value="15" selected>選擇分類</option>
 							<option value="1">音樂</option>
 							<option value="2">戲劇</option>
 							<option value="3">舞蹈</option>
@@ -48,7 +47,7 @@
 				<tr>
 					<td>縣市名</td>
 					<td><select id="site" class="" name="location">
-							<option value="" selected>選擇地區</option>
+							<option value="台北" selected>選擇地區</option>
 							<option value="">==北部地區==</option>
 							<option value="基隆">基隆</option>
 							<option value="台北">台北</option>
@@ -75,38 +74,78 @@
 				</tr>
 				<tr>
 					<td>地點</td>
-					<td><input type="text" name="locationName"></td>
+					<td><input type="text" name="locationName" required="required"></td>
 				</tr>
-<!-- 				<tr> -->
-<!-- 					<td>活動開始日</td> -->
-<!-- 					<td><input type="date" name="time"></td> -->
-<!-- 				</tr> -->
+				<!-- 				<tr> -->
+				<!-- 					<td>活動開始日</td> -->
+				<!-- 					<td><input type="date" name="time"></td> -->
+				<!-- 				</tr> -->
 				<tr>
 					<td>主辦單位</td>
-					<td><input type="text" name="mainunit"></td>
+					<td><input type="text" name="mainunit" required="required"></td>
 				</tr>
 				<tr>
 					<td>演出單位</td>
-					<td><input type="text" name="showunit"></td>
+					<td><input type="text" name="showunit" required="required"></td>
 				</tr>
 				<tr>
 					<td>活動開始日</td>
-					<td><input type="date" name="startdate"></td>
+					<td><input type="date" name="startdate" required="required"></td>
 				</tr>
 				<tr>
 					<td>活動結束日</td>
-					<td><input type="date" name="enddate"></td>
+					<td><input type="date" name="enddate" required="required"></td>
 				</tr>
 				<tr>
 					<td>活動描述</td>
-					<td><textarea rows="8" cols="" name="description"></textarea>
-					</td>
+					<td><textarea rows="8" cols="" name="description"
+							required="required"></textarea></td>
 				</tr>
+<!-- 				<tr> -->
+<!-- 					<td><input name="photo" type="file" id="imgInp" -->
+<!-- 						accept="image/gif, image/jpeg, image/png"/ ></td> -->
+<!-- 				</tr> -->
 			</table>
 
-			<input type="submit" value="送出新增" name="1"
-				class="btn btn-outline-info" id="1">
+			<input type="submit" value="送出新增" name=""
+				class="btn btn-outline-info" id="" onclick="return insert()">
+	</form>
+
+
 	</form>
 	</div>
+
+	<script>
+		function insert() {
+			var msg = "確認是否新增?";
+			if (confirm(msg) == true) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// 		function readURL(input){
+
+		// 			  if(input.files && input.files[0]){
+
+		// 			    var imageTagID = input.getAttribute("targetID");
+
+		// 			    var reader = new FileReader();
+
+		// 			    reader.onload = function (e) {
+
+		// 			       var img = document.getElementById(imageTagID);
+
+		// 			       img.setAttribute("src", e.target.result)
+
+		// 			    }
+
+		// 			    reader.readAsDataURL(input.files[0]);
+
+		// 			  }
+
+		// 			}
+	</script>
 </body>
 </html>

@@ -1,6 +1,8 @@
 package _04_AAARThibernate.action;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -33,11 +35,13 @@ public class Delete extends HttpServlet {
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-
+		response.setContentType("text/html;charset=UTF-8");
+		
 		int actno = Integer.parseInt(request.getParameter("actno"));
 		String page = request.getParameter("page");
 		String category = request.getParameter("category");
-
+		String searchString = request.getParameter("searchString");
+		System.out.println(searchString);
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession();
 		try {
@@ -55,7 +59,15 @@ public class Delete extends HttpServlet {
 		}
 
 		// 導回前頁
-		response.sendRedirect("/HibernateWebProject/AAArtAction?page=" + page + "&category=" + category);
+		if (category.equals("")) {
+//			request.getRequestDispatcher("/SearchAll?page="+ page + "&searchString="+searchString).forward(request, response);
+			response.sendRedirect("/HibernateWebProject/SearchAll?page="+ page + "&searchString="+URLEncoder.encode(searchString,"utf-8"));
+			System.out.println("&searchString="+searchString);
+		}
+		else {
+			response.sendRedirect("/HibernateWebProject/AAArtAction?page=" + page + "&category=" + category);
+		}
+			
 
 	}
 }

@@ -3,12 +3,14 @@ package _04_AAARThibernate.model;
 
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -75,9 +77,21 @@ public class ShowBean implements Serializable{
 	
 	@Column(name = "ACT_ENDDATE")
 	private String ACT_ENDDATE;
+	
+	@Column(name = "ACT_PHOTO")
+	@Lob
+	private byte[] ACT_PHOTO;
 
-	
-	
+
+
+	public byte[] getACT_PHOTO() {
+		return ACT_PHOTO;
+	}
+
+	public void setACT_PHOTO(byte[] aCT_PHOTO) {
+		ACT_PHOTO = aCT_PHOTO;
+	}
+
 	public int getACT_NO() {
 		return ACT_NO;
 	}
@@ -207,7 +221,6 @@ public class ShowBean implements Serializable{
 	}
 
 	
-
 	
 
 }

@@ -1,5 +1,6 @@
 package _04_AAARThibernate.model;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Session;

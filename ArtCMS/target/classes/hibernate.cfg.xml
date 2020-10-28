@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+<!--         已經在web.xml和context.xml設定，故註解以下 -->
+<!--         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property> -->
+<!--         <property name="hibernate.connection.password">hr</property> -->
+<!--         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/XEPDB1</property> -->
+<!--         <property name="hibernate.connection.username">hr</property> -->
+		
+        <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+<!--         關於Datasource -->
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/xe</property>
+<!--         關於Session-->        
+        <property name="hibernate.current_session_context_class">thread</property>
+        
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+        
+<!--         關於自動生成表格-->             
+<!--         <property name="hibernate.hbm2ddl.auto">update</property> -->
+    	
+    	<mapping class="eeit124.group4._35_cms.model.EventSpace"/>
+    	<mapping class="eeit124.group4._35_cms.model.Sponsership"/>
+    	<mapping class="eeit124.group4._14_shopAP.model.ARTProduct"/>
+		<mapping class="eeit124.group4._14_shopAP.model.Stock"/>
+		<mapping class="eeit124.group4._14_shopAP.model.StockTransaction"/>
+   		<mapping class="eeit124.group4._04_AAARThibernate.model.ShowBean" />
+   		<mapping class="eeit124.group4._18_course.model.Course_LN" />
+   		<mapping class="eeit124.group4._03_cultureAndCreativeShopsCMS.model.ShopBean" />
+   		
+    </session-factory>
+</hibernate-configuration>

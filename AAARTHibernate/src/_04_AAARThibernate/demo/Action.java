@@ -42,8 +42,8 @@ public static void main(String[] args) {
 		System.out.println("請輸入搜尋關鍵字");
 		searchString =scanner.next();
 		//搜尋字傳入find()
-		List<ShowBean> showlList = SService.find(searchString);
-		for(ShowBean showBean2 : showlList) {
+		List<ShowBean> showList = SService.find(searchString);
+		for(ShowBean showBean2 : showList) {
 			 System.out.println(showBean2.getACT_NO()+": "+showBean2.getACT_TITLE());
 		}
 

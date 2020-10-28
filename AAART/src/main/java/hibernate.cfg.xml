@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property> -->
+		<!-- <property name="hibernate.connection.username">group4</property> -->
+		<!-- <property name="hibernate.connection.password">oracle</property> -->
+		<!-- <property name="hibernate.connection.password">hr</property> -->
+		<!-- <property name="hibernate.connection.username">hr</property> -->
+		<!-- <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521/XEPDB1</property> -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
+
+		<property name="hibernate.connection.datasource">java:comp/env/connectOracleJdbc/HibernateService</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<!-- 秀出sql語法 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- sql語法自動排版 -->
+		<property name="hibernate.format_sql">true</property>
+		
+		
+		 <!-- 用annotation@用mapping class= 用 hbm.xml用mapping resource -->
+		<mapping class="_04_AAART.hibernate.model.ShowBean" />
+		
+	</session-factory>
+</hibernate-configuration>

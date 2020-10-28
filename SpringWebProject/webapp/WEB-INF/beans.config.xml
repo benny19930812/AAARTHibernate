@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="model" />
+
+	<!-- <bean id="oracledatasource" -->
+	<!-- class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+	<!-- <property name="driverClassName" -->
+	<!-- value="oracle.jdbc.driver.OracleDriver" /> -->
+	<!-- <property name="url" -->
+	<!-- value="jdbc:oracle:thin:@localhost:1521/XEPDB1" /> -->
+	<!-- <property name="username" value="hr" /> -->
+	<!-- <property name="password" value="hr" /> -->
+	<!-- </bean> -->
+
+	
+	<bean id="oracledatasource"
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName"
+			value="java:comp/env/connectOracleJdbc/HibernateService" />
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+		<property name="dataSource" ref="oracledatasource" />
+		<property name="configLocation">
+			<value>classpath:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+
+	<bean id="houseBeanDao" class="model.HouseBeanDAO">
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+	<bean id="houseBeanService" class="model.HouseBeanService">
+		<constructor-arg ref="houseBeanDao" />
+	</bean>
+
+
+
+	<bean id="logProvider" class="util.LogProvider" />
+
+	<!-- LoginDAO loginDao = new LoginDAO(); -->
+	<bean id="loginDao" class="model.LoginDAO" />
+
+	<!-- LoginService loginService2 = new LoginService(loginDao); -->
+	<bean id="loginService2" class="model.LoginService">
+		<constructor-arg ref="loginDao" />
+	</bean>
+
+	<!-- LoginService loginService1 = new LoginService(); -->
+	<bean id="loginService1" class="model.LoginService">
+		<property name="loginDao" ref="loginDao" />
+	</bean>
+
+
+
+	<bean id="msg1" class="model.TestStringConstructorDI"
+		scope="prototype" init-method="init" destroy-method="destory">
+		<constructor-arg name="name" value="This is a sign." />
+	</bean>
+
+	<bean id="msg2" class="model.TestStringConstructorDI">
+		<property name="name" value="This is a nice day." />
+	</bean>
+
+	<bean id="msg3" class="model.TestStringConstructorDI"
+		p:name="see you next time." />
+
+	<bean id="truckBean" class="model.TruckBean">
+		<!-- set方法 -->
+		<property name="id" value="1" />
+		<property name="brand" value="tesla" />
+	</bean>
+
+	<bean id="toyotaTruck" class="model.TruckBeanStaticFactory"
+		factory-method="getTruckBean">
+		<constructor-arg value="1" />
+	</bean>
+
+	<bean id="nissanTruck" class="model.TruckBeanStaticFactory"
+		factory-method="getTruckBean">
+		<constructor-arg value="2" />
+	</bean>
+
+	<bean id="truckBeanFactory" class="model.TruckBeanFactory">
+		<property name="map">
+			<map>
+				<entry key="1">
+					<bean class="model.TruckBean">
+						<property name="id" value="5" />
+						<property name="brand" value="bmw" />
+					</bean>
+				</entry>
+				<entry key="2">
+					<bean class="model.TruckBean">
+						<property name="id" value="6" />
+						<property name="brand" value="mbenz" />
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="bmwTruck" factory-bean="truckBeanFactory"
+		factory-method="geTruckBean">
+		<constructor-arg value="1" />
+	</bean>
+
+	<bean id="mbenzTruck" factory-bean="truckBeanFactory"
+		factory-method="geTruckBean">
+		<constructor-arg value="2" />
+	</bean>
+
+	<bean id="work1" class="model.Worker">
+		<property name="id" value="1001" />
+		<property name="name" value="Mary" />
+		<property name="title" value="Engineer" />
+	</bean>
+
+	<bean id="work2" class="model.Worker">
+		<property name="id" value="1002" />
+		<property name="name" value="John" />
+		<property name="title" value="sales" />
+	</bean>
+
+	<bean id="treeBean" class="model.TreeBean" />
+	<bean id="props"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="location">
+			<value>classpath:tree.properties</value>
+		</property>
+	</bean>
+
+
+
+</beans>

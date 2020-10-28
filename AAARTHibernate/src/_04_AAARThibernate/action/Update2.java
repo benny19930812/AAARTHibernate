@@ -37,13 +37,7 @@ public class Update2 extends HttpServlet {
 
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {	
 
-	
-//		String page = request.getParameter("page");
-//		System.out.println(page);
-		
-
 		String page = request.getParameter("page");
-		
 		int actno =Integer.parseInt(request.getParameter("actno"));
 		String title = request.getParameter("title");
 		int category =Integer.parseInt(request.getParameter("category"));
@@ -68,7 +62,7 @@ public class Update2 extends HttpServlet {
 			
 			request.setAttribute("title",title);
 			request.setAttribute("category",category );
-			request.setAttribute(" location", location );
+			request.setAttribute("location", location );
 			request.setAttribute("locationName",locationName );
 			request.setAttribute("mainunit",mainunit );
 			request.setAttribute("showunit",showunit );

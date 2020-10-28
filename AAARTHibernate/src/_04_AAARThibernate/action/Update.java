@@ -38,12 +38,11 @@ public class Update extends HttpServlet {
 	private void processAction(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {	
 
 	
-//		String page = request.getParameter("page");
-//		System.out.println(page);
-		
+		String page = request.getParameter("page");
 
+	
 		int actno =Integer.parseInt(request.getParameter("actno"));
-		System.out.println(actno);
+		System.out.println("actno: "+actno);
 		
 		
 
@@ -55,6 +54,7 @@ public class Update extends HttpServlet {
 			ShowBeanService showService = new ShowBeanService(session);
 			ShowBean showBean = showService.select(actno);
 			
+			
 			String title = showBean.getACT_TITLE();
 			System.out.println(title);
 			int category =showBean.getACT_CATEGORY();
@@ -65,14 +65,15 @@ public class Update extends HttpServlet {
 			String showunit = showBean.getACT_SHOWUNIT();
 			String description = showBean.getACT_DESCRIPTION();
 			String startdate = showBean.getACT_STARTDATE();
-			System.out.println(startdate);
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-			Date date;
-			date = sdf.parse(startdate);
-			// System.out.println(date);
-			System.out.println(date);
+			
+//			System.out.println(startdate);
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+//			Date date;
+//			date = sdf.parse(startdate);
+//
+//			System.out.println(date);
 			String enddate = showBean.getACT_ENDDATE();
-			System.out.println(enddate);
+//			System.out.println(enddate);
 
 //			ShowBean showBean = SService.select(1000);	
 //			System.out.println(showBean.getACT_NO()+":"+showBean.getACT_TITLE()+showBean.getACT_DESCRIPTION());
@@ -81,13 +82,14 @@ public class Update extends HttpServlet {
 			request.setAttribute("actno",actno);
 			request.setAttribute("title",title);
 			request.setAttribute("category",category );
-			request.setAttribute(" location", location );
+			request.setAttribute("location", location );
 			request.setAttribute("locationName",locationName );
 			request.setAttribute("mainunit",mainunit );
 			request.setAttribute("showunit",showunit );
 			request.setAttribute("description",description );
-			request.setAttribute("startdate",date );
-			request.setAttribute("enddate",enddate );
+			request.setAttribute("page",page );
+//			request.setAttribute("startdate",date );
+//			request.setAttribute("enddate",enddate );
 			
 			
 			
