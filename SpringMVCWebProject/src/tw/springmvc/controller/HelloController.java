@@ -7,31 +7,64 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.AbstractController;
 
-public class HelloController extends AbstractController {
+@Controller
+@SessionAttributes(names = {"name"})
+public class HelloController {
+	
+	@RequestMapping(path = "/formEntry.controller", method = RequestMethod.GET)
+	public String processEntryPage() {
+		return "form";
+	}
 
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		request.setCharacterEncoding("UTF-8");
-		String user = request.getParameter("user");
+	@RequestMapping(path = "/hello.controller", method = RequestMethod.GET)
+    public String processHelloAction(@RequestParam(name = "user") String user, Model m) {
 		
 		Map<String, String> errors = new HashMap<String,String>();
-		request.setAttribute("errors", errors);
+		m.addAttribute("errors", errors);
 		
 		if(user==null || user.length()==0) {
 			errors.put("msg", "name is required");
 		}
 		
 		if(errors!=null && !errors.isEmpty()) {			
-			return new ModelAndView("/form.jsp");
+			return "form";
 		}
-		
-		HttpSession session = request.getSession();
-		session.setAttribute("name", user);
-		return new ModelAndView("/success.jsp");
-	}
+
+		m.addAttribute("name", user);
+		return "success";
+    }
+			
+//	@Override
+//	protected ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//			
+//		request.setCharacterEncoding("UTF-8");
+//		String user = request.getParameter("user");
+//		
+//		Map<String, String> errors = new HashMap<String,String>();
+//		request.setAttribute("errors", errors);
+//		
+//		if(user==null || user.length()==0) {
+//			errors.put("msg", "name is required");
+//		}
+//		
+//		if(errors!=null && !errors.isEmpty()) {			
+////			return new ModelAndView("/form.jsp");
+//			return new ModelAndView("form");
+//		}
+//		
+//		HttpSession session = request.getSession();
+//		session.setAttribute("name", user);
+//		return new ModelAndView("success");
+////		return new ModelAndView("/success.jsp");
+//	}
 
 }

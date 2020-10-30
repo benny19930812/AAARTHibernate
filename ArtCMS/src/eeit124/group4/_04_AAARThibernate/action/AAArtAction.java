@@ -71,7 +71,7 @@ public class AAArtAction extends HttpServlet {
 					map.put("title", titleString);
 					map.put("site", siteString);
 					// 存入map集合中
-//				System.out.println(map);
+				System.out.println(map);
 					list.add(map);// 將map集合放入list集合
 //				System.out.println("放入集合");
 	

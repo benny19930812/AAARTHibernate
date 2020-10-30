@@ -14,10 +14,13 @@ import javax.persistence.Lob;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.springframework.stereotype.Component;
+
 
 
 @Entity  //宣告此class為javabean
 @Table(name = "MAINTABLE")
+@Component("showBean")
 public class ShowBean implements Serializable{
 	
 

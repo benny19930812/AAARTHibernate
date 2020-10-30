@@ -7,12 +7,12 @@
 </head>
 <body>
 <h2>LoginSystem</h2>
-<form action="login.controller" method="POST">
+<form action="checkLogin.controller" method="POST">
    <p>
-   User:<input type="text" name="userName"/><br/><br/> 
-   Password:<input type="password" name="userPwd"/><br/> 
+   User:<input type="text" name="userName"/>${errors.user}<br/> 
+   Password:<input type="password" name="userPwd"/>${errors.pwd}<br/>
    </p>
-   <input type="submit" value="Login">
+   <input type="submit" value="Login">${errors.msg}   
 </form>
 </body>
 </html>

@@ -11,9 +11,10 @@ import java.util.List;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
 
-
+@Repository("showBeanDao")
 public class ShowBeanDAO {
 
 	private Session session;

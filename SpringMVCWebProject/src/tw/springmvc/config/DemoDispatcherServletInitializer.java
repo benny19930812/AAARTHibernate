@@ -1,7 +1,8 @@
 package tw.springmvc.config;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import javax.servlet.Filter;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class DemoDispatcherServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -13,7 +14,6 @@ public class DemoDispatcherServletInitializer extends AbstractAnnotationConfigDi
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		//設定檔
 		return new Class[] {SpringMVCJavaConfig.class};
 	}
 
@@ -22,4 +22,11 @@ public class DemoDispatcherServletInitializer extends AbstractAnnotationConfigDi
 		return new String[] {"/"};
 	}
 
+	@Override
+	protected Filter[] getServletFilters() {
+		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+		encodingFilter.setEncoding("UTF-8");
+		encodingFilter.setForceEncoding(true);
+		return new Filter[] {encodingFilter};
+	}
 }

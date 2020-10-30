@@ -21,7 +21,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import aaart.model.ShowBean;
 import aaart.model.ShowBeanDAO;
 import aaart.model.ShowBeanService;
-import aaart.util.HibernateUtil;
+
 
 @Controller
 public class CRUDController {
@@ -48,14 +48,14 @@ public class CRUDController {
 		
 		List<Map> list = new ArrayList<Map>();
 		
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.getCurrentSession();
+	
+		
 //
-		ShowBeanService showService = new ShowBeanService(session);
+		System.out.println("here");
+		ShowBeanService showService = new ShowBeanService();
 //		ShowBeanDAO SDao = new ShowBeanDAO();
 		
 		
-		System.out.println("here");
 		List<ShowBean> showList = showService.selectAll();
 		System.out.println("here2");
 		for (ShowBean showBean : showList) {
