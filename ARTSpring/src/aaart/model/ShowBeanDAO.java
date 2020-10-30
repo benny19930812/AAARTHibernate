@@ -10,22 +10,37 @@ import java.util.List;
 
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 
 @Repository("showBeanDao")
 public class ShowBeanDAO {
-
+	
+	private SessionFactory sessionFacory;
 	private Session session;
-
-	public ShowBeanDAO(Session session) {
-		this.session = session;
+	
+	public ShowBeanDAO() {
+	
+	}
+	
+	@Autowired 
+	public ShowBeanDAO(@Qualifier("sessionFactory") SessionFactory sessionFacory) {
+		this.sessionFacory = sessionFacory;
 	}
 
+//	@Autowired 
+//	public ShowBeanDAO(Session session) {
+//		this.session = session;
+//	}
+	
 
 	// 新增
 	public ShowBean insert(ShowBean showbean) {
+		Session session = sessionFacory.getCurrentSession();
 		ShowBean resultBean = session.get(ShowBean.class, showbean.getACT_NO());
 
 		if (resultBean == null) {
@@ -37,6 +52,7 @@ public class ShowBeanDAO {
 
 	// 查詢
 	public ShowBean select(int actid) {
+		Session session = sessionFacory.getCurrentSession();
 		return session.get(ShowBean.class, actid);
 	}
 
@@ -44,6 +60,7 @@ public class ShowBeanDAO {
 	public List<ShowBean> selectAll() {
 		// "From ShowBean"為createQuery
 		//
+		Session session = sessionFacory.getCurrentSession();
 		Query<ShowBean> query = session.createQuery("From ShowBean SB ORDER BY SB.ACT_NO", ShowBean.class);
 		List<ShowBean> list = query.list();
 		return list;
@@ -52,6 +69,7 @@ public class ShowBeanDAO {
 	// 查詢多筆+分頁
 	public List<ShowBean> selectAll2() {
 		// "From ShowBean"為createQuery
+		Session session = sessionFacory.getCurrentSession();
 		Query<ShowBean> query = session.createQuery("From ShowBean", ShowBean.class);
 		query.setFirstResult(1);
 		query.setMaxResults(100);
@@ -62,6 +80,8 @@ public class ShowBeanDAO {
 	// 修改
 	public ShowBean update(int actno, String title, int category, String location, String locationName,
 			String mainunit, String showunit, String description, String startdate, String enddate) {
+		
+		Session session = sessionFacory.getCurrentSession();
 		ShowBean showBean = session.get(ShowBean.class, actno);
 
 		if (showBean != null) {
@@ -80,6 +100,8 @@ public class ShowBeanDAO {
 
 	// 刪除
 	public boolean delete(int actid) {
+		
+		Session session = sessionFacory.getCurrentSession();
 		ShowBean result = session.get(ShowBean.class, actid);
 
 		if (result != null) {
@@ -93,6 +115,8 @@ public class ShowBeanDAO {
 	// 模糊查詢
 	// find內預設傳入String searchString參數
 	public List<ShowBean> find(String searchString) {
+		
+		Session session = sessionFacory.getCurrentSession();
 		String queryString = "from ShowBean where ACT_TITLE like'%" + searchString + "%'";
 		Query queryObject = session.createQuery(queryString);
 

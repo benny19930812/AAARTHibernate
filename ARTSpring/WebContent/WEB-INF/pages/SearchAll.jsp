@@ -38,7 +38,7 @@
 	<div class="container">
 
 		<h1>後臺管理系統</h1>
-		<form method=GET action="<c:url value='/SearchAll'/>">
+			<form method=POST action="SearchAll.controller">
 			<input type=TEXT name="searchString" class="" placeholder=""
 				id="search"> <input type=SUBMIT value="查詢" class=""
 				id="searchbut"><br><br>

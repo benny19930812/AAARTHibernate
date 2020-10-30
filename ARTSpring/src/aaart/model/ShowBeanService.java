@@ -4,14 +4,27 @@ import java.io.IOException;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+
 
 @Service("showbeanService")
 public class ShowBeanService {
+	
+	@Autowired 
 	private ShowBeanDAO SDao;
-	public ShowBeanService(Session session) {
-		SDao = new ShowBeanDAO(session);
+	
+	public ShowBeanService() {
+		
 	}
+	public ShowBeanService(Session session) {
+		SDao = new ShowBeanDAO();
+	}
+	public ShowBeanService(ShowBeanDAO SDao) {
+		this.SDao = SDao;
+	}
+	
 
 	public ShowBean insert(ShowBean showbean) {		
 		return SDao.insert(showbean);

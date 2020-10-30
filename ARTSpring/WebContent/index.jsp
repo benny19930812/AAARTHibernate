@@ -41,7 +41,7 @@
 		<h1>後臺管理系統:修改活動資訊</h1>
 <%-- 		<form method=GET action="<c:url value='/SearchAll'/>"> --%>
 		<form method=POST action="SearchAll.controller">
-			<Input type='hidden' name='page' value='${page}'>
+<%-- 			<Input type='hidden' name='page' value='${page}'> --%>
 			<input type=TEXT name="searchString" class="" placeholder=""id="search"> 
 			<input type=SUBMIT value="查詢" class="btn btn-info" id="searchbut"><br><br>
 			</form>
@@ -58,7 +58,7 @@
 
 			<p>總筆數:${totalnum} 每頁筆數:${PerPage} 總頁數:${totalPages} 目前在第${page}頁</p>
 			<!-- 頂部按鈕	 -->
-			<form method=GET action="<c:url value='/AAArtAction'/>">
+			<form method=POST action="Category.controller">
 				<br>
 				<!-- 隱藏屬性 用來傳遞頁數 -->
 				<input type="hidden" name="page" value="">
